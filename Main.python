@@ -1,0 +1,37 @@
+import random
+
+class AgenteBlackjack:
+    def __init__(self):
+        self.pontuacao = 0
+
+    def decidir(self):
+        if self.pontuacao < 17: 
+            return 'pedir'
+        else:
+            return 'parar' 
+
+    def receber_carta(self, carta):
+        self.pontuacao += carta
+
+
+def jogar_blackjack():
+    agente = AgenteBlackjack()
+    baralho = list(range(1, 11)) * 4 
+    random.shuffle(baralho)
+
+    while True:
+        acao = agente.decidir()
+        print(f'Pontuação do agente: {agente.pontuacao}')
+
+        if acao == 'pedir':
+            carta = baralho.pop()
+            print(f'O agente pediu uma carta: {carta}')
+            agente.receber_carta(carta)
+        else:
+            print('O agente decidiu parar.')
+            break
+
+    print(f'Pontuação final do agente: {agente.pontuacao}')
+
+
+jogar_blackjack()
